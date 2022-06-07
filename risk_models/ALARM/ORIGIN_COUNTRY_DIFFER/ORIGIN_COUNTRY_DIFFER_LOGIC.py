@@ -127,9 +127,30 @@ class Origin_Country_Logic(object):
             entry_df.drop(columns=['entry', 'OWNER_NAME', 'OWNER_CODE'], inplace=True)
             entry_df = entry_df.reset_index()
             print(entry_df)
+            # 对entry_df 去重
+            sql2 = '''SELECT t.CORP_CREDIT_CODE,
+            REPLACE(SUBSTR(t.CONTEXT ,23,10),'-','') AS date_1
+            FROM DW_CUS_RC.BD_RISK_CROSS_TRADE_WARAIN_TEMP t'''
+            ENTRY_ID_DF = Read_Oracle().read_oracle(sql=sql2, database='dbalarm')
+            list_temp = []
+            for i in range(ENTRY_ID_DF.shape[0]):
+                if i not in list_temp:
+                    list_temp.append(ENTRY_ID_DF.iloc[i]['CORP_CREDIT_CODE'])
+            CORP_CREDIT_CODE_list_temp = list(set(list_temp))
+            # 提取CORP_CREDIT_CODE_list_temp 并去重
 
-            if entry_df is not None:
-                Write_Oracle_Alarm().write_oracle('BD_RISK_CROSS_TRADE_WARAIN_TEMP', entry_df, org_code=None, alarm=None)
+            # 清洗数据并去重 对针对30天内Bussiness_start_time数据去重
+            i_list = []
+            for i in range(entry_df.shape[0]):
+                if (entry_df.iloc[i]['CORP_CREDIT_CODE'] in CORP_CREDIT_CODE_list_temp)and ((datetime.datetime.strptime(datetime.datetime.now().strftime('%Y-%m-%d'),
+                                             "%Y-%m-%d") - datetime.datetime.strptime(
+                entry_df.iloc[i]['CONTEXT'][22:32], '%Y-%m-%d')).days < 30):
+                    i_list.append(i)
+            entry_df_distinct = entry_df.drop(labels=i_list)
+            # 获得去重后的DataFrame, entry_df_distinct
+
+            if entry_df_distinct is not None:
+                Write_Oracle_Alarm().write_oracle('BD_RISK_CROSS_TRADE_WARAIN_TEMP', entry_df_distinct, org_code=None, alarm=None)
 
     def run_logic_layer(self):
         try:

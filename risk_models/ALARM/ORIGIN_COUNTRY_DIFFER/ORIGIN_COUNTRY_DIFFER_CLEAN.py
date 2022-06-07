@@ -31,8 +31,25 @@ class Origin_Country(object):
             origin_country_df['D_DATE'] = origin_country_df['D_DATE'].map(lambda x: x.strftime("%Y%m%d"))
             origin_country_df = origin_country_df.drop(columns=['I_E_FLAG'])
             origin_country_df['ID'] = 0
-        # 写入数据库
-            Write_Oracle_Alarm().write_oracle('BD_RISK_CROSS_TRADE_RESULT_ORIGIN_COUNTRY_DIFFER_CLEAN', origin_country_df, org_code=None, alarm=None)
+
+            # 去重
+            sql2 = '''select distinct ENTRY_ID from DW_CUS_RC.BD_RISK_CROSS_TRADE_RESULT_ORIGIN_COUNTRY_DIFFER_CLEAN'''
+            ENTRY_ID_DF = Read_Oracle().read_oracle(sql=sql2, database='dbalarm')
+
+            list_temp = []
+            for i in range(ENTRY_ID_DF.shape[0]):
+                if i not in list_temp:
+                    list_temp.append(ENTRY_ID_DF.iloc[i]['ENTRY_ID'])
+            list_temp2 = list(set(list_temp))
+            # 提取ENTRY_ID 并去重
+            i_list = []
+            for i in range(origin_country_df.shape[0]):
+                if origin_country_df.iloc[i]['ENTRY_ID'] in list_temp2:
+                    i_list.append(i)
+            origin_country_df_distinct = origin_country_df.drop(labels=i_list)
+            # 获得去重后的DataFrame, origin_country_df_distinct
+            # 写入数据库
+            Write_Oracle_Alarm().write_oracle('BD_RISK_CROSS_TRADE_RESULT_ORIGIN_COUNTRY_DIFFER_CLEAN', origin_country_df_distinct, org_code=None, alarm=None)
 
     def run_clean_layer(self):
         try:
