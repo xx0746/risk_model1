@@ -5,7 +5,7 @@ if sys.platform[0] == 'l':
     sys.path.append('/root/bdrisk/risk_project')
     sys.path.append(path.dirname(path.dirname(path.dirname(os.getcwd()))))
 else:
-    sys.path.append(r"D:\bdrisk-model\risk_model\risk_models")
+    sys.path.append(r"C:\Users\lenovo\Downloads\risk_models")
     sys.path.append(path.dirname(path.dirname(path.dirname(os.getcwd()))))
     print(path.dirname(path.dirname(os.getcwd())))
 from risk_models import *
