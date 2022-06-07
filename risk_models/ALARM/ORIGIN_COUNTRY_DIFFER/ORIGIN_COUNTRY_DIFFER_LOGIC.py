@@ -146,7 +146,7 @@ class Origin_Country_Logic(object):
 
 
 if __name__ == '__main__':
-    # 读取传入的 child_task_id，仅适用于py调用,先备注掉
+    # 读取传入的 child_task_id，仅适用于py调用,先备注掉 /
     if params_global.is_test:
         child_task_id = 'Origin_Country_Differ_LOGIC'
     else:
