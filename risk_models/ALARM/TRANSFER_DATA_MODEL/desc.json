@@ -1,0 +1,23 @@
+{
+    "modelCode":"ALARM",
+    "modelName":"数据同步",
+    "modelType":"2",
+    "modelDesc":"预警模块",
+    "childModelCode":"TRANSFER_DATA_MODEL",
+    "childModelName":"TRANSFER_DATA_MODEL",
+    "childModelType":"2",
+	"childModelDesc":"数据同步",
+    "customer":[
+        {
+            "customerCode":"FTA_LG",
+            "pyList":[
+                {
+                    "cron":"0 0 15 * * ?",
+			        "path":"/ALARM/TRANSFER_DATA_MODEL/TRANSFER_DATA_LOGIC.py",
+			        "param":{"score":-10},
+					"needCorp":"1"
+                }
+            ]
+        }
+    ]
+}

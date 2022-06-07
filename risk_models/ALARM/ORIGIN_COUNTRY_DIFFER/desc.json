@@ -1,0 +1,29 @@
+{
+    "modelCode":"ALARM",
+    "modelName":"一二线原产地差异",
+    "modelType":"2",
+    "modelDesc":"预警模块",
+    "childModelCode":"ORIGIN_COUNTRY_DIFFER",
+    "childModelName":"ORIGIN_COUNTRY_DIFFER",
+    "childModelType":"2",
+	"childModelDesc":"一二线原产地差异预警",
+    "customer":[
+        {
+            "customerCode":"FTA_LG",
+            "pyList":[
+                {
+                    "cron":"0 0 5 1 * ?",
+			        "path":"/ALARM/ORIGIN_COUNTRY_DIFFER/ORIGIN_COUNTRY_DIFFER_CLEAN.py",
+			        "param":{},
+					"needCorp":"0"
+                },
+                {
+                    "cron":"0 0 15 1 * ?",
+			        "path":"/ALARM/ORIGIN_COUNTRY_DIFFER/ORIGIN_COUNTRY_DIFFER_LOGIC.py",
+			        "param":{},
+					"needCorp":"0"
+                }
+            ]
+        }
+    ]
+}

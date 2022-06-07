@@ -1,0 +1,29 @@
+{
+    "modelCode":"WAREHOUSE",
+    "modelName":"仓储",
+    "modelType":"1",
+    "modelDesc":"这个是仓储模块",
+    "childModelCode":"WH1",
+    "childModelName":"订单验真模型",
+    "childModelType":"3",
+	"childModelDesc":"以企业的入出库与海关的报关单数据为基础，快速识别报关单中填报不符的异常事件，对仓储企业出入库行为的真实性进行验证",
+    "customer":[
+        {
+            "customerCode":"FTA_LG",
+            "pyList":[
+                {
+                    "cron":"0 0 9 1 * ?",
+			        "path":"/WAREHOUSE/WH1/WAREHOUSE_CLEAN_WH1.py",
+			        "param":{},
+					"needCorp":"1"
+                },
+				{
+                    "cron":"0 0 19 1 * ?",
+			        "path":"/WAREHOUSE/WH1/WAREHOUSE_MODEL_WH1.py",
+			        "param":{"score_crit":[0,0,0,-1,-1,-1,-1,-1]},
+					"needCorp":"1"
+                }
+            ]
+        }
+    ]
+}

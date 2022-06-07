@@ -1,0 +1,29 @@
+{
+    "modelCode":"WAREHOUSE",
+    "modelName":"仓储",
+    "modelType":"1",
+    "modelDesc":"这个是仓储模块",
+    "childModelCode":"WH2",
+    "childModelName":"仓储作业模型",
+    "childModelType":"3",
+	"childModelDesc":"以仓储物流企业订单数据为基础，通过分析企业客户及订单类型的多样性，针对性地设定合理的订单交付周期，核对每一笔订单完成耗时情况；及时发现异常订单，监管企业经营状态",
+    "customer":[
+        {
+            "customerCode":"FTA_LG",
+            "pyList":[
+                {
+                    "cron":"0 0 9 1 * ?",
+			        "path":"/WAREHOUSE/WH2/WAREHOUSE_CLEAN_WH2.py",
+			        "param":{"type":"hard"},
+					"needCorp":"1"
+                },
+				{
+                    "cron":"0 0 19 1 * ?",
+			        "path":"/WAREHOUSE/WH2/WAREHOUSE_MODEL_WH2.py",
+			        "param":{"ratio_high":"-100 / len(WAREHOUSE_ORDER_RESULT)","ratio_low":"0"},
+					"needCorp":"1"
+                }
+            ]
+        }
+    ]
+}

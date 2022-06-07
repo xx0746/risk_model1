@@ -1,0 +1,29 @@
+{
+    "modelCode":"CREDIT",
+    "modelName":"信用",
+    "modelType":"1",
+    "modelDesc":"这个是信用模块",
+    "childModelCode":"CR3",
+    "childModelName":"潜在风险模型",
+    "childModelType":"2",
+	"childModelDesc":"从企业财务状况、员工结构等角度出发，整合多维度的企业风险评价指标，对企业潜在风险进行预警提示",
+    "customer":[
+        {
+            "customerCode":"FTA_LG",
+            "pyList":[
+                {
+                    "cron":"0 0 1 1 * ?",
+			        "path":"/CREDIT/CR3/CREDIT_CLEAN_CR3.py",
+			        "param":{},
+					"needCorp":"1"
+                },
+                {
+                    "cron":"0 0 11 1 * ?",
+			        "path":"/CREDIT/CR3/CREDIT_MODEL_CR3.py",
+			        "param":{"ratio":"-100 / len(POTENTIAL_RISK_RESULT)","cbl":0.9},
+					"needCorp":"1"
+                }
+            ]
+        }
+    ]
+}

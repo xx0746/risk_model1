@@ -1,0 +1,28 @@
+{
+    "modelCode":"ALARM",
+    "modelName":"危化品申报长期未出库",
+    "modelType":"1",
+    "modelDesc":"预警模块",
+    "childModelCode":"CHEMICAL",
+    "childModelName":"CHEMICAL",
+    "childModelType":"2",
+	"childModelDesc":"这个是危化品申报长期未出库预警模型",
+    "customer":[
+        {
+            "customerCode":"FTA_LG",
+            "pyList":[
+            {
+                    "cron":"0 0 05 1 * ?",
+			        "path":"/ALARM/CHEMICAL/CHEMICAL_CLEAN.py",
+			        "param":{},
+					"needCorp":"0"},
+                {
+                    "cron":"0 0 15 1 * ?",
+			        "path":"/ALARM/CHEMICAL/CHEMICAL_MODEL.py",
+			        "param":{},
+					"needCorp":"0"
+                }
+            ]
+        }
+    ]
+}

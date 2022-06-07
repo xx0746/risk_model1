@@ -1,0 +1,23 @@
+{
+    "modelCode":"ALARM",
+    "modelName":"供应链安全评估",
+    "modelType":"2",
+    "modelDesc":"预警模块",
+    "childModelCode":"SUPPLY_CHAIN",
+    "childModelName":"SUPPLY_CHAIN",
+    "childModelType":"2",
+	"childModelDesc":"供应链安全评估",
+    "customer":[
+        {
+            "customerCode":"FTA_LG",
+            "pyList":[
+                {
+                    "cron":"0 0 5 1 * ?",
+			        "path":"/TRADE/TD1/TRADE_MODEL_TD1.py",
+			        "param":{"score":-10},
+					"needCorp":"1"
+                }
+            ]
+        }
+    ]
+}

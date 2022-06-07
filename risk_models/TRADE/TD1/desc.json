@@ -1,0 +1,23 @@
+{
+    "modelCode":"TRADE",
+    "modelName":"外贸",
+    "modelType":"1",
+    "modelDesc":"这个是外贸模块",
+    "childModelCode":"TD1",
+    "childModelName":"贸易异常企业模型",
+    "childModelType":"2",
+	"childModelDesc":"这个是贸易异常企业模型，包含：走私违规、检验检疫和知识产权三大类违规信息",
+    "customer":[
+        {
+            "customerCode":"FTA_LG",
+            "pyList":[
+                {
+                    "cron":"0 0 5 1 * ?",
+			        "path":"/TRADE/TD1/TRADE_MODEL_TD1.py",
+			        "param":{"score":-10},
+					"needCorp":"1"
+                }
+            ]
+        }
+    ]
+}

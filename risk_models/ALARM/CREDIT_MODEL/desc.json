@@ -1,0 +1,23 @@
+{
+    "modelCode":"ALARM",
+    "modelName":"信用模型",
+    "modelType":"2",
+    "modelDesc":"预警模块",
+    "childModelCode":"CREDIT_MODEL",
+    "childModelName":"CREDIT_MODEL",
+    "childModelType":"2",
+	"childModelDesc":"这个是危化品申报长期未出库预警模型",
+    "customer":[
+        {
+            "customerCode":"FTA_LG",
+            "pyList":[
+                {
+                    "cron":"0 0 5 1 * ?",
+			        "path":"/TRADE/TD1/TRADE_MODEL_TD1.py",
+			        "param":{"score":-10},
+					"needCorp":"1"
+                }
+            ]
+        }
+    ]
+}

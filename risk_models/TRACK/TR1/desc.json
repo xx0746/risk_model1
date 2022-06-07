@@ -1,0 +1,23 @@
+{
+    "modelCode":"TRACK",
+    "modelName":"物流",
+    "modelType":"1",
+    "modelDesc":"这个是物流模块",
+    "childModelCode":"TR1",
+    "childModelName":"物流gps模型",
+    "childModelType":"3",
+	"childModelDesc":"这个是物流gps模型",
+    "customer":[
+        {
+            "customerCode":"FTA_LG",
+            "pyList":[
+                {
+                    "cron":"0 0 4 1 * ?",
+			        "path":"/TRACK/TR1/TRACK_MODEL_TR2.py",
+			        "param":{"track_sim":70,"track_time":30, "wait_time":20, "track_score":-0.8,"time_score":-0.5,"wait_score":-0.8},
+					"needCorp":"1"
+                }
+            ]
+        }
+    ]
+}

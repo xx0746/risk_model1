@@ -1,0 +1,29 @@
+{
+    "modelCode":"FINANCE",
+    "modelName":"财务",
+    "modelType":"1",
+    "modelDesc":"这个是财务模块",
+    "childModelCode":"FN1",
+    "childModelName":"成品成本模型",
+    "childModelType":"3",
+	"childModelDesc":"以企业生产与财务数据为基础，通过大数据分析，发掘成本异常的商品批次，及时识别生产过程中的成本异常风险",
+    "customer":[
+        {
+            "customerCode":"FTA_LG",
+            "pyList":[
+                {
+                    "cron":"0 0 6 1 * ?",
+			        "path":"/FINANCE/FN1/FINANCE_CLEAN_FN1.py",
+			        "param":{},
+					"needCorp":"1"
+                },
+				{
+                    "cron":"0 0 16 1 * ?",
+			        "path":"/FINANCE/FN1/FINANCE_MODEL_FN1.py",
+			        "param":{"score_crit":[0,-1]},
+					"needCorp":"1"
+                }
+            ]
+        }
+    ]
+}

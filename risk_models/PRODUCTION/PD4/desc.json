@@ -1,0 +1,29 @@
+{
+    "modelCode":"PRODUCTION",
+    "modelName":"生产",
+    "modelType":"1",
+    "modelDesc":"这个是生产模块",
+    "childModelCode":"PD4",
+    "childModelName":"工单合理性模型",
+    "childModelType":"3",
+	"childModelDesc":"以生产企业加工数据为基础，通过对工单的全链路跟踪，精准定位生产环节中的异常事件，确保企业的生产数据合理合规",
+    "customer":[
+        {
+            "customerCode":"FTA_LG",
+            "pyList":[
+                {
+                    "cron":"0 0 7 1 * ?",
+			        "path":"/PRODUCTION/PD4/PRODUCTION_CLEAN_PD4.py",
+			        "param":{},
+					"needCorp":"1"
+                },
+				{
+                    "cron":"0 0 17 1 * ?",
+			        "path":"/PRODUCTION/PD4/PRODUCTION_MODEL_PD4.py",
+			        "param":{"score_crit":[0,-5,-5,-5,-5]},
+					"needCorp":"1"
+                }
+            ]
+        }
+    ]
+}

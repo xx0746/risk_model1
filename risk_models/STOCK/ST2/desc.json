@@ -1,0 +1,29 @@
+{
+    "modelCode":"STOCK",
+    "modelName":"库存",
+    "modelType":"1",
+    "modelDesc":"这个是库存模块",
+    "childModelCode":"ST2",
+    "childModelName":"库存料号盈亏模型",
+    "childModelType":"3",
+	"childModelDesc":"以企业出入库数据为基础，深入挖掘企业料号粒度上的异常盈亏现象，提示企业爆仓或负库存危险；能够及时满足企业用料资源异常的及时管控要求",
+    "customer":[
+        {
+            "customerCode":"FTA_LG",
+            "pyList":[
+                {
+                    "cron":"0 0 8 1 * ?",
+			        "path":"/STOCK/ST2/STOCK_CLEAN_ST2.py",
+			        "param":{},
+					"needCorp":"1"
+                },
+				{
+                    "cron":"0 0 18 1 * ?",
+			        "path":"/STOCK/ST2/STOCK_MODEL_ST2.py",
+			        "param":{"cutoff_high":100000000,"cutoff_low":0,"ratio_high":"-100 / len(STOCK_END_RESULT)","ratio_low":"-100 / len(STOCK_END_RESULT)"},
+					"needCorp":"1"
+                }
+            ]
+        }
+    ]
+}

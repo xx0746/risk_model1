@@ -1,0 +1,29 @@
+{
+    "modelCode":"PRODUCTION",
+    "modelName":"生产",
+    "modelType":"1",
+    "modelDesc":"这个是生产模块",
+    "childModelCode":"PD1",
+    "childModelName":"工单耗用模型",
+    "childModelType":"3",
+	"childModelDesc":"以生产企业加工数据为基础，计算企业生产过程中的原材料投入产出比，及时发现异常批次，杜绝偷工减料或资源浪费现象",
+    "customer":[
+        {
+            "customerCode":"FTA_LG",
+            "pyList":[
+                {
+                    "cron":"0 0 7 1 * ?",
+			        "path":"/PRODUCTION/PD1/PRODUCTION_CLEAN_PD1.py",
+			        "param":{},
+					"needCorp":"1"
+                },
+				{
+                    "cron":"0 0 17 1 * ?",
+			        "path":"/PRODUCTION/PD1/PRODUCTION_MODEL_PD1.py",
+			        "param":{"ratio_high":"-100 / len(PRO_GDHY_RESULT)","ratio_low":"-100 / len(PRO_GDHY_RESULT)"},
+					"needCorp":"1"
+                }
+            ]
+        }
+    ]
+}

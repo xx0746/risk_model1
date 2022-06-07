@@ -1,0 +1,29 @@
+{
+    "modelCode":"STOCK",
+    "modelName":"库存",
+    "modelType":"1",
+    "modelDesc":"这个是库存模块",
+    "childModelCode":"ST1",
+    "childModelName":"库存库位盈亏模型",
+    "childModelType":"3",
+	"childModelDesc":"以企业出入库数据为基础，精准定位企业异常库位，并提示企业爆仓或负库存危险；能够及时满足企业异常库位的管控要求",
+    "customer":[
+        {
+            "customerCode":"FTA_LG",
+            "pyList":[
+                {
+                    "cron":"0 0 8 1 * ?",
+			        "path":"/STOCK/ST1/STOCK_CLEAN_ST1.py",
+			        "param":{},
+					"needCorp":"1"
+                },
+				{
+                    "cron":"0 0 18 1 * ?",
+			        "path":"/STOCK/ST1/STOCK_MODEL_ST1.py",
+			        "param":{"cutoff_high":100000000,"cutoff_low":0,"ratio_high":"-100 / len(STOCK_END_RESULT)","ratio_low":"-100 / len(STOCK_END_RESULT)"},
+					"needCorp":"1"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,29 @@
+{
+    "modelCode":"THROUGH_CUSTOM",
+    "modelName":"通关",
+    "modelType":"1",
+    "modelDesc":"通关模块",
+    "childModelCode":"THROUGH_CUSTOM",
+    "childModelName":"通关分析",
+    "childModelType":"1",
+	"childModelDesc":"分析企业通关情况",
+    "customer":[
+        {
+            "customerCode":"FTA_LG",
+            "pyList":[
+                {
+                    "cron":"0 0 8 1 * ?",
+			        "path":"/ALARM/TONGGUAN/TONGGUAN_CLEAN.py",
+			        "param":{},
+					"needCorp":"0"
+                },
+				{
+                    "cron":"0 0 18 1 * ?",
+			        "path":"/ALARM/TONGGUAN/TONGGUAN_MODEL.py",
+			        "param":{},
+					"needCorp":"0"
+                }
+            ]
+        }
+    ]
+}

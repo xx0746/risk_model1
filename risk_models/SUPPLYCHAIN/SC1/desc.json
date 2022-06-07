@@ -1,0 +1,29 @@
+{
+    "modelCode":"SUPPLYCHAIN",
+    "modelName":"供应链",
+    "modelType":"1",
+    "modelDesc":"这个是供应链模块",
+    "childModelCode":"SC1",
+    "childModelName":"供应链画像模型",
+    "childModelType":"2",
+	"childModelDesc":"供应链画像模型，用来查看企业关系图谱",
+    "customer":[
+        {
+            "customerCode":"FTA_LG",
+            "pyList":[
+                {
+					"cron":"0 0 3 1 * ?",
+					"path":"/SUPPLYCHAIN/SC1/SUPPLYCHAIN_CLEAN_SC1.py",
+					"param":{},
+                    "needCorp":"0"
+				},
+				{		
+					"cron":"0 0 13 1 * ?",
+					"path":"/SUPPLYCHAIN/SC1/SUPPLYCHAIN_MODEL_SC1.py",
+					"param": {"tt_score":[-5,-2,3,5],"tv_score":[-5,-2,3,5],"sf_score":[-3,-2,1,5],"in_score":[-2.5,-2,1,5],"sin_score":[-2,-1,1,2.5], "rating_list" : [10,9,8,7,6,5,0] , "bvd_list":[10,8,5,0,-1,0] },
+					"needCorp":"0"
+				}
+            ]
+        }
+    ]
+}

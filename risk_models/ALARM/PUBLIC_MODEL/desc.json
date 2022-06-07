@@ -1,0 +1,23 @@
+{
+    "modelCode":"ALARM",
+    "modelName":"公共模型",
+    "modelType":"2",
+    "modelDesc":"预警模块",
+    "childModelCode":"PUBLIC_MODEL",
+    "childModelName":"PUBLIC_MODEL",
+    "childModelType":"2",
+	"childModelDesc":"这个是危化品申报长期未出库预警模型",
+    "customer":[
+        {
+            "customerCode":"FTA_LG",
+            "pyList":[
+                {
+                    "cron":"0 0 6 1 * ?",
+			        "path":"/ALARM/PUBLIC_MODEL/PUBLIC_MODEL_LOGIC.py",
+			        "param":{},
+					"needCorp":"0"
+                }
+            ]
+        }
+    ]
+}

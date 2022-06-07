@@ -1,0 +1,29 @@
+{
+    "modelCode":"ALARM",
+    "modelName":"子账户退库异常",
+    "modelType":"1",
+    "modelDesc":"预警模块",
+    "childModelCode":"SUB_ACCOUNT",
+    "childModelName":"SUB_ACCOUNT",
+    "childModelType":"2",
+	"childModelDesc":"子账户退库异常",
+    "customer":[
+        {
+            "customerCode":"FTA_LG",
+            "pyList":[
+                {
+                    "cron":"0 0 5 1 * ?",
+			        "path":"/ALARM/SUB_ACCOUNT/SUB_ACCOUNT_CLEAN.py",
+			        "param":{},
+					"needCorp":"0"
+                },
+                {
+                    "cron":"0 0 15 1 * ?",
+			        "path":"/ALARM/SUB_ACCOUNT/SUB_ACCOUNT_LOGIC.py",
+			        "param":{},
+					"needCorp":"0"
+                }
+            ]
+        }
+    ]
+}

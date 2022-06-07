@@ -1,0 +1,29 @@
+{
+    "modelCode":"STOCK",
+    "modelName":"库存",
+    "modelType":"1",
+    "modelDesc":"这个是库存模块",
+    "childModelCode":"ST5",
+    "childModelName":"库存数量与采购模型",
+    "childModelType":"3",
+	"childModelDesc":"以企业的出入库与采购数据为基础，利用大数据分析，全面发掘入库与采购数量不符的异常事件，对于多批次交付的情况，也能精准发现采购 - 入库环节中的异常订单",
+    "customer":[
+        {
+            "customerCode":"FTA_LG",
+            "pyList":[
+                {
+                    "cron":"0 0 8 1 * ?",
+			        "path":"/STOCK/ST5/STOCK_CLEAN_ST5.py",
+			        "param":{},
+					"needCorp":"1"
+                },
+				{
+                    "cron":"0 0 18 1 * ?",
+			        "path":"/STOCK/ST5/STOCK_MODEL_ST5.py",
+			        "param":{"days_thr":30,"rate_thr_sup":1,"rate_thr_inf":1,"day_thr_sup":360,"day_per_thr_sup":null,"score_crit":[0,-0.5,-0.1,-0.5]},
+					"needCorp":"1"
+                }
+            ]
+        }
+    ]
+}

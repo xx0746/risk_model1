@@ -1,0 +1,23 @@
+{
+    "modelCode":"SCORE",
+    "modelName":"得分",
+    "modelType":"2",
+    "modelDesc":"这个是分数模块",
+    "childModelCode":"SCORE_CR",
+    "childModelName":"信用总分计算",
+    "childModelType":"3",
+	"childModelDesc":"这个是信用总分计算，仅用来计算临港新片区内企业",
+    "customer":[
+        {
+            "customerCode":"FTA_LG",
+            "pyList":[
+                {
+                    "cron":"0 0 1 3 * ?",
+			        "path":"/SCORE/SCORE_CR/SCORE_CREDIT.py",
+			        "param":{"score_weight":[1,1,1]},
+					"needCorp":"0"
+                }
+            ]
+        }
+    ]
+}

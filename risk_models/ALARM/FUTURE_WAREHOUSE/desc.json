@@ -1,0 +1,31 @@
+{
+  "modelCode": "ALARM",
+  "modelName": "期货保税交割",
+  "modelType": "2",
+  "modelDesc": "预警模块",
+  "childModelCode": "FUTURE_WAREHOUSE",
+  "childModelName": "FUTURE_WAREHOUSE",
+  "childModelType": "2",
+  "childModelDesc": "这个是危化品申报长期未出库预警模型",
+  "customer": [
+    {
+      "customerCode": "FTA_LG",
+      "pyList": [
+        {
+          "cron": "0 0 5 1 * ?",
+          "path": "/ALARM/FUTURE_WAREHOUSE/FUTURE_WAREHOUSE_CLEAN.py",
+          "param": {
+            "score": -10
+          },
+          "needCorp": "0"
+        },
+        {
+          "cron": "0 0 15 1 * ?",
+          "path": "/ALARM/FUTURE_WAREHOUSE/FUTURE_WAREHOUSE_LOGIC.py",
+          "param": {},
+          "needCorp": "0"
+        }
+      ]
+    }
+  ]
+}

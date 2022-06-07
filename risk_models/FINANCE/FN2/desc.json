@@ -1,0 +1,29 @@
+{
+    "modelCode":"FINANCE",
+    "modelName":"财务",
+    "modelType":"1",
+    "modelDesc":"这个是财务模块",
+    "childModelCode":"FN2",
+    "childModelName":"人工成本模型",
+    "childModelType":"3",
+	"childModelDesc":"以生产企业人工成本数据为基础，通过大数据分析，抓取企业人工成本异常批次，防范企业用人成本异常现象",
+    "customer":[
+        {
+            "customerCode":"FTA_LG",
+            "pyList":[
+                {
+                    "cron":"0 0 6 1 * ?",
+			        "path":"/FINANCE/FN2/FINANCE_CLEAN_FN2.py",
+			        "param":{},
+					"needCorp":"1"
+                },
+				{
+                    "cron":"0 0 16 1 * ?",
+			        "path":"/FINANCE/FN2/FINANCE_MODEL_FN2.py",
+			        "param":{"ratio_high":"-100 / len(FINANCE_LABOR_COST_RESULT)","ratio_low":"-100 / len(FINANCE_LABOR_COST_RESULT)"},
+					"needCorp":"1"
+                }
+            ]
+        }
+    ]
+}

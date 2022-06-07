@@ -1,0 +1,29 @@
+{
+    "modelCode":"PRODUCTION",
+    "modelName":"生产",
+    "modelType":"1",
+    "modelDesc":"这个是生产模块",
+    "childModelCode":"PD2",
+    "childModelName":"生产工时模型",
+    "childModelType":"3",
+	"childModelDesc":"以生产企业加工数据为基础，针对企业不同加工作业类型，定制化设计加工工时耗用标准；监管企业生产经营过程，即时抓取异常工单",
+    "customer":[
+        {
+            "customerCode":"FTA_LG",
+            "pyList":[
+                {
+                    "cron":"0 0 7 1 * ?",
+			        "path":"/PRODUCTION/PD2/PRODUCTION_CLEAN_PD2.py",
+			        "param":{},
+					"needCorp":"1"
+                },
+				{
+                    "cron":"0 0 17 1 * ?",
+			        "path":"/PRODUCTION/PD2/PRODUCTION_MODEL_PD2.py",
+			        "param":{"ratio_high":"-100 / len(PRO_SCGS_RESULT)","ratio_low":"-100 / len(PRO_SCGS_RESULT)"},
+					"needCorp":"1"
+                }
+            ]
+        }
+    ]
+}

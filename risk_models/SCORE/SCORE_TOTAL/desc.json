@@ -1,0 +1,23 @@
+{
+    "modelCode":"SCORE",
+    "modelName":"得分",
+    "modelType":"2",
+    "modelDesc":"这个是分数模块",
+    "childModelCode":"SCORE_TOTAL",
+    "childModelName":"总分计算",
+    "childModelType":"3",
+	"childModelDesc":"这个是总分计算，仅用来计算临港新片区内企业",
+    "customer":[
+        {
+            "customerCode":"FTA_LG",
+            "pyList":[
+                {
+                    "cron":"0 0 2 4 * ?",
+			        "path":"/SCORE/SCORE_TOTAL/SCORE_TOTAL.py",
+			        "param":{"fillna_score":100},
+					"needCorp":"0"
+                }
+            ]
+        }
+    ]
+}

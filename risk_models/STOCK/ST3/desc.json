@@ -1,0 +1,29 @@
+{
+    "modelCode":"STOCK",
+    "modelName":"库存",
+    "modelType":"1",
+    "modelDesc":"这个是库存模块",
+    "childModelCode":"ST3",
+    "childModelName":"库存吞吐量模型",
+    "childModelType":"3",
+	"childModelDesc":"这个是库存吞吐量模型",
+    "customer":[
+        {
+            "customerCode":"FTA_LG",
+            "pyList":[
+                {
+                    "cron":"0 0 8 1 * ?",
+			        "path":"/STOCK/ST3/STOCK_CLEAN_ST3.py",
+			        "param":{},
+					"needCorp":"1"
+                },
+				{
+                    "cron":"0 0 18 1 * ?",
+			        "path":"/STOCK/ST3/STOCK_MODEL_ST3.py",
+			        "param":{"score1":-0.3,"score2":-0.3,"thresh_hold_high":80,"thresh_hold_low":20,"turnover_rate":50},
+					"needCorp":"1"
+                }
+            ]
+        }
+    ]
+}

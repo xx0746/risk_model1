@@ -1,0 +1,29 @@
+ {
+    "modelCode":"CREDIT",
+    "modelName":"信用",
+    "modelType":"1",
+    "modelDesc":"这个是信用模块",
+    "childModelCode":"CR1",
+    "childModelName":"失信涉诉模型",
+    "childModelType":"2",
+	"childModelDesc":"以法院诉讼案件与失信执行事件数据为基础，全面发掘企业失信涉诉事件，提示相应的法律风险，可以满足对企业合法依规情况的监管布控需求",
+    "customer":[
+        {
+            "customerCode":"FTA_LG",
+            "pyList":[
+                {
+                    "cron":"0 0 01 1 * ?",
+                    "path":"/CREDIT/CR1/CREDIT_CLEAN_CR1.py",
+                    "param":{},
+					"needCorp":"1"
+                },
+                {
+                    "cron":"0 0 11 1 * ?",
+                    "path":"/CREDIT/CR1/CREDIT_MODEL_CR1.py",
+                    "param":{"score_crit":[0,0,0,-0.1,0,-0.1]},
+					"needCorp":"1"
+                }
+            ]
+        }
+    ]
+}
